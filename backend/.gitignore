@@ -2,8 +2,6 @@
 # Dependencies
 # ===================
 node_modules/
-.pnp
-.pnp.js
 
 # ===================
 # Build outputs
@@ -11,8 +9,6 @@ node_modules/
 dist/
 build/
 out/
-.next/
-.nuxt/
 
 # ===================
 # Environment files
@@ -20,9 +16,6 @@ out/
 .env
 .env.local
 .env.*.local
-.env.development
-.env.test
-.env.production
 !.env.example
 
 # ===================
@@ -43,7 +36,6 @@ coverage/
 *.lcov
 .nyc_output/
 jest-results/
-test-results/
 
 # ===================
 # IDE & Editors
@@ -53,14 +45,11 @@ test-results/
 *.swo
 *.sublime-workspace
 *.sublime-project
-*.code-workspace
 
-# Keep VS Code settings but ignore personal preferences
+# VS Code - keep shared settings
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/settings.json
 
 # ===================
 # OS generated files
@@ -68,47 +57,50 @@ test-results/
 .DS_Store
 .DS_Store?
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+ehthumbs.db
 Desktop.ini
 
 # ===================
-# Package manager
+# TypeScript
 # ===================
-.npm
-.yarn/
-.pnpm-store/
-*.tgz
-package-lock.json.bak
-yarn.lock.bak
+*.tsbuildinfo
 
 # ===================
-# Cache directories
+# Prisma
 # ===================
-.cache/
-.parcel-cache/
+# Keep migrations but ignore lock file
+prisma/migrations/migration_lock.toml
+
+# Generated Prisma client (regenerated on install)
+# node_modules/.prisma/ is already covered by node_modules
+
+# ===================
+# Database
+# ===================
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# ===================
+# Cache
+# ===================
 .eslintcache
-.stylelintcache
-*.tsbuildinfo
-.turbo/
+.cache/
 
 # ===================
 # Temporary files
 # ===================
-tmp/
-temp/
 *.tmp
 *.temp
-*.bak
-*.backup
+tmp/
+temp/
 
 # ===================
-# Misc
+# Secrets & Keys
 # ===================
-.env.vault
 *.pem
 *.key
-.vercel
-.netlify
+*.cert
+secrets/
