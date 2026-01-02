@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Token {
+  id            Int       @id @default(autoincrement())
+  tokenNumber   String    @unique
+  serviceType   String
+  status        TokenStatus @default(WAITING)
+  queuePosition Int?
+  counterId     Int?
+  createdAt     DateTime  @default(now())
+  calledAt      DateTime?
+  completedAt   DateTime?
+  
+  counter       Counter?  @relation(fields: [counterId], references: [id])
+  
+  @@map("tokens")
+}
+
+model Counter {
+  id        Int           @id @default(autoincrement())
+  number    Int           @unique
+  status    CounterStatus @default(ACTIVE)
+  createdAt DateTime      @default(now())
+  
+  tokens    Token[]
+  
+  @@map("counters")
+}
+
+enum TokenStatus {
+  WAITING
+  SERVING
+  COMPLETED
+}
+
+enum CounterStatus {
+  ACTIVE
+  INACTIVE
+}
